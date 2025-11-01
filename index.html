@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WanderNotes — Share Your Travel Experiences</title>
+  <meta name="description" content="A clean, responsive single-file site to share travel stories, photos and tips." />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">W</div>
+        <div>
+          <h1>WanderNotes</h1>
+          <p class="lead">Capture & share your trips — stories, photos, tips.</p>
+        </div>
+      </div>
+      <nav>
+        <button class="btn" id="exportBtn">Export JSON</button>
+        <button class="btn" id="clearBtn">Clear All</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2 style="margin:0 0 8px">Share a new travel story</h2>
+        <div class="editor">
+          <input id="title" type="text" placeholder="Trip title — e.g. 3 days in Hampi" />
+          <div class="row">
+            <input id="location" class="col" type="text" placeholder="Location (city, country)" />
+            <select id="mood" style="width:160px">
+              <option value="adventure">Adventure</option>
+              <option value="relax">Relax</option>
+              <option value="food">Food</option>
+              <option value="culture">Culture</option>
+            </select>
+          </div>
+          <textarea id="content" placeholder="Write your experience, tips, things to do..."></textarea>
+          <label class="small">Cover photo</label>
+          <input id="photo" type="file" accept="image/*" />
+          <img id="preview" class="thumb" alt="preview" style="display:none" />
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="btn primary" id="postBtn">Publish</button>
+            <div class="small" id="status">Saved locally in your browser.</div>
+          </div>
+        </div>
+
+        <div class="filters">
+          <input id="q" class="search" type="text" placeholder="Search title, location or text" />
+          <select id="filterMood">
+            <option value="all">All moods</option>
+            <option value="adventure">Adventure</option>
+            <option value="relax">Relax</option>
+            <option value="food">Food</option>
+            <option value="culture">Culture</option>
+          </select>
+        </div>
+      </div>
+
+      <aside>
+        <div class="hero-card" style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="margin:0">Tips & Features</h3>
+          <ul class="small" style="margin:6px 0 0 18px;padding:0 6px">
+            <li>Write posts and attach a cover photo (stored locally in browser).</li>
+            <li>Search & filter posts, open a post lightbox, export JSON for backup.</li>
+            <li>Use the Export JSON button to save your data to a file.</li>
+          </ul>
+          <div style="margin-top:8px">
+            <strong>Quick start</strong>
+            <p class="small" style="margin:6px 0 0">Add a title, location, a short story and a photo → Publish. Your posts are saved in localStorage.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="feed" class="grid" aria-live="polite"></section>
+
+    <!-- lightbox -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <img id="modalImg" src="" alt="photo" />
+        <div class="modal-meta">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div id="modalTitle" style="font-weight:700"></div>
+              <div id="modalLoc" class="small"></div>
+            </div>
+            <div id="modalMood" class="tag"></div>
+          </div>
+          <p id="modalContent" style="margin-top:10px;color:var(--muted)"></p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Built for you — offline-first. Your stories stay in your browser unless you export them.
+    </footer>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
